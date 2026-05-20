@@ -37,8 +37,14 @@ export function buildTrend(
 }
 
 /**
- * 最初に法人化手取りが個人事業手取りを上回る売上(=ブレークイーブン)を返す。
- * 5000万まで上回らない場合は null。
+ * ブレークイーブン(法人化分岐点)を返す。
+ *
+ * 「その売上以降、上限(5000万)までずっと法人化が有利であり続ける最小の売上」を分岐点とする。
+ * 低売上域では国民年金が定額(20.4万)であるのに対し法人の社会保険料が役員報酬比例で
+ * 小さくなるため、メリット曲線が非単調になり一時的に法人有利へ振れることがある。
+ * その低売上のノイズ交点は無視し、安定して法人有利になる点だけを採用する。
+ *
+ * 上限売上まで法人有利が続かない場合(=分岐点なし)は null を返す。
  */
 export function findBreakeven(
   expenseRate: number,
@@ -46,6 +52,14 @@ export function findBreakeven(
   ratio: number = INTERNAL_RESERVE_RATIO,
 ): number | null {
   const trend = buildTrend(expenseRate, hasSpouse, 5000, 100, ratio);
-  const hit = trend.find((p) => p.corp > p.solo);
-  return hit ? hit.revenue : null;
+  // 上限売上から下へ走査し、法人有利が途切れる手前までを分岐点候補とする。
+  let breakeven: number | null = null;
+  for (let i = trend.length - 1; i >= 0; i--) {
+    if (trend[i].corp > trend[i].solo) {
+      breakeven = trend[i].revenue;
+    } else {
+      break;
+    }
+  }
+  return breakeven;
 }

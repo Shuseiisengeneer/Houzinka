@@ -72,7 +72,9 @@ const ResultCard = forwardRef<HTMLDivElement, Props>(function ResultCard(
             fontWeight: 700,
           }}
         >
-          法人化分岐点 年商{breakeven !== null ? breakeven.toLocaleString() : '5,000超'}万円
+          {breakeven !== null
+            ? `法人化分岐点 年商${breakeven.toLocaleString()}万円`
+            : '法人化分岐点なし(年商5,000万まで)'}
         </div>
       </div>
 

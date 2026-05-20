@@ -172,7 +172,7 @@ export default function Page() {
         <section className="mt-6 rounded-2xl border border-gray-200 bg-white p-5">
           <h2 className="text-sm font-black text-gray-900">売上ごとの法人化メリット</h2>
           <p className="mt-0.5 text-xs text-gray-400">
-            縦軸がプラスなら法人化が有利。0を上回る点が分岐点です。
+            縦軸がプラスなら法人化が有利。安定してプラスへ転じる点が分岐点です。
           </p>
           <div className="mt-2">
             <RevenueTrendChart data={result.trend} breakeven={result.breakeven} />

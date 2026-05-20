@@ -35,18 +35,27 @@ export default function ResultDisplay({ corpFavored, advantage, breakeven, reven
       {/* ブレークイーブン */}
       <div className="rounded-2xl border border-gray-200 bg-white p-5 text-center">
         <p className="text-sm font-bold text-gray-500">あなたの法人化分岐点</p>
-        <p className="mt-1">
-          <span className="text-sm font-bold text-gray-700">年商</span>
-          <span className="mx-1 text-4xl font-black text-brand">
-            {breakeven !== null ? breakeven.toLocaleString() : '5,000超'}
-          </span>
-          <span className="text-sm font-bold text-gray-700">万円</span>
-        </p>
-        <p className="mt-1 text-xs text-gray-400">
-          {breakeven !== null
-            ? 'この売上を超えると法人化で手取りが増えはじめます'
-            : '今の経費率では年商5,000万円までは個人事業が有利です'}
-        </p>
+        {breakeven !== null ? (
+          <>
+            <p className="mt-1">
+              <span className="text-sm font-bold text-gray-700">年商</span>
+              <span className="mx-1 text-4xl font-black text-brand">
+                {breakeven.toLocaleString()}
+              </span>
+              <span className="text-sm font-bold text-gray-700">万円</span>
+            </p>
+            <p className="mt-1 text-xs text-gray-400">
+              この売上を超えると法人化で手取りが増えはじめます
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="mt-2 text-2xl font-black text-accent">分岐点なし</p>
+            <p className="mt-1 text-xs text-gray-500">
+              現在の経費率では年商5,000万円まで法人化メリットは出ません
+            </p>
+          </>
+        )}
       </div>
     </div>
   );
