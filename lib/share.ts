@@ -2,8 +2,8 @@
  * X(Twitter)シェア用のヘルパー。
  */
 
-/** このアプリの公開URL(GitHub Pages 想定) */
-export const APP_URL = 'https://shuseiisengeneer.github.io/houzinka/';
+/** このアプリの公開URL(GitHub Pages 想定・リポジトリ名と大小文字を一致させる) */
+export const APP_URL = 'https://shuseiisengeneer.github.io/Houzinka/';
 /** 第一弾「副業の旨味終了点シミュレーター」 */
 export const FIRST_TOOL_URL = 'https://shuseiisengeneer.github.io/hukugyo_zeikin/';
 /** 作者の X ハンドル */

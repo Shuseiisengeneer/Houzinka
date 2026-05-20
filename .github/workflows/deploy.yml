@@ -27,8 +27,9 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
-          # GitHub Pages のプロジェクトサイト(/houzinka)向け basePath
-          NEXT_PUBLIC_BASE_PATH: /houzinka
+          # GitHub Pages のプロジェクトサイト向け basePath。
+          # リポジトリ名(Houzinka)と大小文字まで一致させる必要がある。
+          NEXT_PUBLIC_BASE_PATH: /Houzinka
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
